@@ -53,7 +53,7 @@ function xTextRefresh() {
     "translate(" +
       ((width - labelArea) / 2 + labelArea) +
       ", " +
-      (height - margin - tPadX) +
+      (height - margin.bottom - tPadX) +
       ")"
   );
 }
@@ -68,7 +68,7 @@ xText
   .text("poverty");
 
 
-var leftTextX = margin + tPadY;
+var leftTextX = margin.left + tPadY;
 var leftTextY = (height + labelArea) / 2 - labelArea;
 
 svg.append("g").attr("class", "yText");
@@ -95,6 +95,7 @@ yText
 
 d3.csv("assets/data/data.csv").then(function(data) {
   // Visualize the data
+console.log(data)
   visualize(data);
 });
 
@@ -103,6 +104,24 @@ function visualize(theData) {
   var curX = "poverty";
   var curY = "obesity";
 
+  var xLinearScale = d3.scaleLinear()
+      .domain([20, d3.max(theData, curX)])
+      .range([0, width]);
+
+    var yLinearScale = d3.scaleLinear()
+      .domain([0, d3.max(theData, curY)])
+      .range([height, 0]);
+// add code to change current x + y
+
+  var circlesGroup = chartGroup.selectAll("circle")
+  .data(theData)
+  .enter()
+  .append("circle")
+  .attr("cx", d => xLinearScale(d.poverty))
+  .attr("cy", d => yLinearScale(d.obesity))
+  .attr("r", "15")
+  .attr("fill", "pink")
+  .attr("opacity", ".5");
 
   var toolTip = d3
     .tip()
