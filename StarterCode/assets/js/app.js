@@ -1,43 +1,4 @@
 // @TODO: YOUR CODE HERE!
-d3.csv("assets/data/data.csv").then(function(data) {
-    // Visualize the data
-    visualize(data);
-  });
-  
-  function visualize(theData) {
-  
-    var curX = "poverty";
-    var curY = "age";
-  
-  
-    var toolTip = d3
-      .tip()
-      .attr("class", "d3-tip")
-      .offset([40, -60])
-      .html(function(d) {
-       
-        var theX;
-        var theState = "<div>" + d.state + "</div>";
-  
-        var theY = "<div>" + curY + ": " + d[curY] + "%</div>";
-  
-        if (curX === "poverty") {
-  
-          theX = "<div>" + curX + ": " + d[curX] + "%</div>";
-        }
-        else {
-          theX = "<div>" +
-            curX +
-            ": " +
-            parseFloat(d[curX]).toLocaleString("en") +
-            "</div>";
-        }
-        // Display what we capture.
-        return theState + theX + theY;
-      });
-    // Call the toolTip function.
-    svg.call(toolTip);
-  }
 var svgWidth = 960;
 var svgHeight = 500;
 
@@ -104,23 +65,8 @@ xText
   .attr("data-name", "poverty")
   .attr("data-axis", "x")
   .attr("class", "aText active x")
-  .text("Poverty %");
+  .text("poverty");
 
-xText
-  .append("text")
-  .attr("y", 0)
-  .attr("data-name", "healthcare")
-  .attr("data-axis", "x")
-  .attr("class", "aText inactive x")
-  .text("Healthcare %");
-
-xText
-  .append("text")
-  .attr("y", 26)
-  .attr("data-name", "income")
-  .attr("data-axis", "x")
-  .attr("class", "aText inactive x")
-  .text("Income");
 
 var leftTextX = margin + tPadY;
 var leftTextY = (height + labelArea) / 2 - labelArea;
@@ -139,66 +85,50 @@ yTextRefresh();
 
 yText
   .append("text")
-  .attr("y", -26)
-  .attr("data-name", "age")
-  .attr("data-axis", "y")
-  .attr("class", "aText active y")
-  .text("age");
-
-yText
-  .append("text")
-  .attr("x", 0)
-  .attr("data-name", "smokes")
-  .attr("data-axis", "y")
-  .attr("class", "aText inactive y")
-  .text("smokes");
-
-yText
-  .append("text")
   .attr("y", 26)
   .attr("data-name", "obesity")
   .attr("data-axis", "y")
   .attr("class", "aText inactive y")
-  .text("obesity rate");
+  .text("obesity");
 
 // 2. Import csv
 
-// d3.csv("assets/data/data.csv").then(function(data) {
-//   // Visualize the data
-//   visualize(data);
-// });
+d3.csv("assets/data/data.csv").then(function(data) {
+  // Visualize the data
+  visualize(data);
+});
 
-// function visualize(theData) {
+function visualize(theData) {
 
-//   var curX = "poverty";
-//   var curY = "age";
+  var curX = "poverty";
+  var curY = "obesity";
 
 
-//   var toolTip = d3
-//     .tip()
-//     .attr("class", "d3-tip")
-//     .offset([40, -60])
-//     .html(function(d) {
+  var toolTip = d3
+    .tip()
+    .attr("class", "d3-tip")
+    .offset([40, -60])
+    .html(function(d) {
      
-//       var theX;
-//       var theState = "<div>" + d.state + "</div>";
+      var xVar;
+      var state = "<div>" + d.state + "</div>";
 
-//       var theY = "<div>" + curY + ": " + d[curY] + "%</div>";
+      var yVar = "<div>" + curY + ": " + d[curY] + "%</div>";
 
-//       if (curX === "poverty") {
+      if (curX === "poverty") {
 
-//         theX = "<div>" + curX + ": " + d[curX] + "%</div>";
-//       }
-//       else {
-//         theX = "<div>" +
-//           curX +
-//           ": " +
-//           parseFloat(d[curX]).toLocaleString("en") +
-//           "</div>";
-//       }
-//       // Display what we capture.
-//       return theState + theX + theY;
-//     });
-//   // Call the toolTip function.
-//   svg.call(toolTip);
-// }
+        xVar = "<div>" + curX + ": " + d[curX] + "%</div>";
+      }
+      else {
+        theX = "<div>" +
+          curX +
+          ": " +
+          parseFloat(d[curX]).toLocaleString("en") +
+          "</div>";
+      }
+      // Display what we capture.
+      return state + xVar + yVar;
+    });
+  // Call the toolTip function.
+  svg.call(toolTip);
+}
