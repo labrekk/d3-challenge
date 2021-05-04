@@ -1,6 +1,5 @@
 # D3 Homework - Data Journalism and D3
-
-![Newsroom](https://media.giphy.com/media/v2xIous7mnEYg/giphy.gif)
+Major error: Error: <g> attribute transform: Trailing garbage, "translate(465, NaN)"
 
 ## Background
 
