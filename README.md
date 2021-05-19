@@ -1,5 +1,4 @@
 # D3 Homework - Data Journalism and D3
-Major error: Error: <g> attribute transform: Trailing garbage, "translate(465, NaN)"
 
 ## Background
 
