@@ -103,11 +103,11 @@ function visualize(theData) {
   var curY = "obesity";
 
   var xLinearScale = d3.scaleLinear()
-      .domain([20, d3.max(theData, curX)])
+      .domain([20, d3.max(theData, d => d[curX])])
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(theData, curY)])
+      .domain([0, d3.max(theData, d => d[curY])])
       .range([height, 0]);
 // add code to change current x + y
 
