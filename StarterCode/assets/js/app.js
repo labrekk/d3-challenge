@@ -91,8 +91,6 @@ yText
   .attr("class", "aText inactive y")
   .text("obesity");
 
-// 2. Import csv
-
 d3.csv("assets/data/data.csv").then(function(data) {
   // Visualize the data
 console.log(data)
@@ -145,9 +143,8 @@ function visualize(theData) {
           parseFloat(d[curX]).toLocaleString("en") +
           "</div>";
       }
-      // Display what we capture.
       return state + xVar + yVar;
     });
-  // Call the toolTip function.
+  // Call the toolTip
   svg.call(toolTip);
 }
